@@ -41,5 +41,18 @@ module.exports = {
                     message: error.message
                 })
             })
+    },
+    getDetails: async (req, res) => {
+        const { id } = req.params;
+
+        await db
+            .select()
+            .from('tb_users')
+            .where({
+                id_user: id
+            })
+            .then(data => {
+                return res.json(data)
+            })
     }
 }
